@@ -56,7 +56,7 @@ def fast_align_MED(S, T, MED={}, alignments={}):
             #need to determine if it is more efficient to perform an insertion or deletion
             if fast_MED(S[1:], T, MED) < fast_MED(S, T[1:], MED): #if deletion is more efficient than insertion
                 MED[S, T] = 1 + fast_MED(S[1:], T, MED) #cost calculation
-                #alignment: delete from S and insert to T, for deletions add "-", no edits for insertion
+                #alignment: delete from S and insert to T, for insertions add "-", no edits for deletions
                 alignments[S,T] = (S[0] + fast_align_MED(S[1:], T, MED, alignments)[0], "-" + fast_align_MED(S[1:], T, MED, alignments)[1])
             else: #if insertion is more efficient than deletion
                 MED[S,T] = 1 + fast_MED(S, T[1:], MED) #cost calculation
